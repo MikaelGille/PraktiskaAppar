@@ -10,6 +10,7 @@ using CustomI.Sample.CustomUserManagement.Areas.Identity.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal;
 
 namespace CustomI.Sample.CustomUserManagement.Areas.Identity.Pages.Account.Manage
 {
@@ -55,7 +56,10 @@ namespace CustomI.Sample.CustomUserManagement.Areas.Identity.Pages.Account.Manag
             /// <summary>
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
-            /// </summary>
+            /// </summary> 
+
+            public string FullName { get; set; }
+
             [Phone]
             [Display(Name = "Phone number")]
             public string PhoneNumber { get; set; }
