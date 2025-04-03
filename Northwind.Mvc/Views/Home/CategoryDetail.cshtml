@@ -1,0 +1,25 @@
+﻿@model Northwind.EntityModels.Category
+@{
+    ViewData["Title"] = "Category Detail - " + Model.CategoryName; 
+}
+<h2>@Model.CategoryName</h2>
+<p>@Model.Description</p>
+
+@if (Model.Products.Any())
+{
+    <h3>Products in this category:</h3>
+    <ul>
+        @foreach (var product in Model.Products)
+        {
+            <li>
+                <a asp-controller="Home" asp-action="ProductDetail" asp-route-id="@product.ProductId">
+                    @product.ProductName
+                </a>
+            </li>
+        }
+    </ul>
+}
+else
+{
+    <p>There are no products in this category.</p>
+}

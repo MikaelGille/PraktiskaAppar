@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Northwind.EntityModels;
 using Northwind.Mvc.Models;
 using System.Diagnostics;
@@ -38,10 +39,31 @@ namespace Northwind.Mvc.Controllers
                 return BadRequest("You must pass a product ID in the route, " +
                     "for example, /Home/ProductDetail/21");
             }
-            Product? model = db.Products.SingleOrDefault(p => p.ProductId == id);
+            Product? model = db.Products
+                .SingleOrDefault(p => p.ProductId == id);
             if (model is null)
             {
                 return NotFound($"ProductId{id} not found");
+            }
+
+            return View(model);
+        }
+
+        public IActionResult CategoryDetail(int? id)
+        {
+            if (!id.HasValue)
+            {
+                return BadRequest("You must pass a category ID in the route, " +
+                    "for example, /Home/CategoryDetail/1");
+            }
+
+            Category? model = db.Categories
+                .Include(c => c.Products)
+                .SingleOrDefault(c => c.CategoryId == id);
+
+            if (model is null)
+            {
+                return NotFound($"CategoryId{id} not found");
             }
 
             return View(model);
