@@ -8,16 +8,16 @@
 <div>
     Enter values for your thing in the following form:
 </div>
-<form method="post" action="/home/modelbinding/2?id=3">
+<form method="POST" action="/home/modelbinding">
     <input name="id" value="1" />
     <input name="color" value="Red" />
     <input name="email" value="test@example.com" />
     <input type="submit" />
 </form>
 
-@if(Model is not null)
+@if (Model is not null)
 {
-    <h2>Submitted thing</h2>
+    <h2>Submitted Thing</h2>
     <hr />
     <div>
         <dl class="dl-horizontal">
@@ -32,7 +32,7 @@
     @if (Model.HasErrors)
     {
         <div>
-            @foreach(string errorMessage in Model.ValidationErrors)
+            @foreach (string errorMessage in Model.ValidationErrors)
             {
                 <div class="alert alert-danger" role="alert">@errorMessage</div>
             }

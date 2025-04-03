@@ -69,7 +69,7 @@ namespace Northwind.Mvc.Controllers
             return View(model);
         }
 
-        public IActionResult ModelBindning()
+        public IActionResult ModelBinding()
         {
             return View();
         }
